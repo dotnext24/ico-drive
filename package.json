@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build"
+    "postinstall": "./node_modules/bower/bin/bower install && ng build"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +35,8 @@
     "passport-jwt": "^4.0.0",
     "rxjs": "^5.5.6",
     "serve-favicon": "^2.5.0",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "bower":"1.8.4"
   },
   "devDependencies": {
     "@angular/cli": "1.6.5",
