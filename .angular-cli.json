@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "mean-secure"
+    "name": "TurnkeyICO"
   },
   "apps": [
     {
@@ -19,10 +19,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
-        "../bower_components/bootstrap/dist/css/bootstrap.css"
+        "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/arrive/src/arrive.js",
+        "../node_modules/moment/moment.js",
+        "../node_modules/chartist/dist/chartist.js",
+        "../node_modules/bootstrap-notify/bootstrap-notify.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

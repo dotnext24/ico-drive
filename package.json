@@ -1,5 +1,5 @@
 {
-  "name": "mean-secure",
+  "name": "turnkey-ico",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "./node_modules/bower/bin/bower install && ng build"
+    "postinstall": "ng build"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +23,14 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@ngui/map": "^0.30.3",
+    "@types/googlemaps": "^3.30.8",
+    "arrive": "2.3.1",
+    "bootstrap": "3.3.5",
+    "bootstrap-notify": "3.1.3",
+    "chartist": "0.9.4",
+    "jquery": "1.12.4",
+    "moment": "2.18.1",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
@@ -36,14 +44,17 @@
     "rxjs": "^5.5.6",
     "serve-favicon": "^2.5.0",
     "zone.js": "^0.8.19",
-    "bower":"1.8.4"
+    "bower": "1.8.4"
   },
   "devDependencies": {
     "@angular/cli": "1.6.5",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
+    "@types/bootstrap": "3.3.32",
+    "@types/chartist": "0.9.34",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
+    "@types/jquery": "^3.3.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",

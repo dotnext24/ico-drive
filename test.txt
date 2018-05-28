@@ -1,0 +1,3 @@
+https://demos.creative-tim.com/paper-dashboard-angular/
+
+https://www.djamware.com/post/5a878b3c80aca7059c142979/securing-mean-stack-angular-5-web-application-using-passport
