@@ -22,8 +22,8 @@ import { UpgradeComponent }   from './upgrade/upgrade.component';
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { HomeLayoutComponent } from './layouts/home-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout.component';
+import { DashboardLayoutComponent } from './layouts/dashboard-layout.component';
+import { PublicLayoutComponent } from './layouts/public-layout.component';
 import { AuthService} from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard'
 import { HttpClientModule } from '@angular/common/http';
@@ -40,8 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
     UpgradeComponent,
     LoginComponent,
     SignupComponent,
-    HomeLayoutComponent,
-    LoginLayoutComponent
+    DashboardLayoutComponent,
+    PublicLayoutComponent
   ],
   imports: [ 
   

@@ -9,35 +9,52 @@ import { NotificationsComponent }   from './notifications/notifications.componen
 import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { LoginLayoutComponent } from './layouts/login-layout.component';
-import { HomeLayoutComponent } from './layouts/home-layout.component';
+import { PublicLayoutComponent } from './layouts/public-layout.component';
+import { DashboardLayoutComponent } from './layouts/dashboard-layout.component';
 import { AuthGuard } from './auth/auth.guard';
+
+
+
+const PUBLIC_ROUTES: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent }
+];
+
+const SECURE_ROUTES: Routes = [
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
+];
 
 export const AppRoutes: Routes = [
 
-    {
-        path: '',
-        component: HomeLayoutComponent,
-        canActivate: [AuthGuard],
-        children: [
-          {
-            path: '',
-            component: DashboardComponent
-          }
-        ]
-      },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: PublicLayoutComponent, data: { title: 'Members' }, children: PUBLIC_ROUTES },
+  { path: '', component: DashboardLayoutComponent, canActivate: [AuthGuard], data: { title: 'Dashboard' }, children: SECURE_ROUTES },
+  { path: '**', redirectTo: 'login' }
+
+    // {
+    //     path: '',
+    //     component: HomeLayoutComponent,
+    //     canActivate: [AuthGuard],
+    //     children: [
+    //       {
+    //         path: '',
+    //         component: DashboardComponent
+    //       }
+    //     ]
+    //   },
       
-      {
-        path: '',
-        component: LoginLayoutComponent,
-        children: [
-          {
-            path: 'login',
-            component: LoginComponent
-          }
-        ]
-      },
-      { path: '**', redirectTo: 'login' }
+    //   {
+    //     path: '',
+    //     component: LoginLayoutComponent,
+    //     children: [
+    //       {
+    //         path: 'login',
+    //         component: LoginComponent
+    //       }
+    //     ]
+    //   },
+    //   { path: '**', redirectTo: 'login' }
 
     // {
     //     path: '',
