@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) { }
 
   signup() {
+      
     this.http.post('/api/signup',this.signupData).subscribe(resp => {
       console.log(resp);
       this.router.navigate(['login']);

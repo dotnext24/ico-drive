@@ -27,6 +27,8 @@ import { PublicLayoutComponent } from './layouts/public-layout.component';
 import { AuthService} from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard'
 import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,7 @@ FormsModule,
     FooterModule,
     FixedPluginModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
-
+   
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

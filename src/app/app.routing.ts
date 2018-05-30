@@ -17,7 +17,8 @@ import { AuthGuard } from './auth/auth.guard';
 
 const PUBLIC_ROUTES: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent }
 ];
 
 const SECURE_ROUTES: Routes = [
