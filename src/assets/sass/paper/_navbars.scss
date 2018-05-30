@@ -50,18 +50,22 @@
 .navbar-nav > li > .dropdown-menu{
     border-radius: $border-radius-extreme;
     margin-top: -5px;
+    background-color: $bg-nude;
 }
 
 .navbar-default {
     background-color: $bg-nude;
     border-bottom: 1px solid $medium-gray;
-
+    
     .brand{
-        color: $font-color !important;
+        color:$white-color !important;
+    }
+    .navbar-brand{
+        color: $white-color;
     }
     .navbar-nav{
         > li > a:not(.btn){
-            color: $dark-gray;
+            color: $white-color;
         }
 
         > .active > a,
@@ -71,7 +75,7 @@
         > li > a:not(.btn):focus {
             background-color: transparent;
             border-radius: 3px;
-            color: $info-color;
+            color: $white-color;
             @include opacity(1);
         }
 

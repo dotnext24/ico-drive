@@ -34,7 +34,9 @@
 .btn-group .btn-group + .btn-group{
     margin-left: -2px;
 }
-
+.btn-fill{
+    background-color: $bg-nude
+}
 // Apply the mixin to the buttons
 //.btn-default { @include btn-styles($default-color, $default-states-color); }
 .navbar .navbar-nav > li > a.btn-primary, .btn-primary { @include btn-styles($primary-color, $primary-states-color); }
@@ -59,6 +61,7 @@
     
     &.btn-fill{
         color: $default-color;
+        
     }
     &.btn-fill:hover,
     &.btn-fill:focus{

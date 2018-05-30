@@ -27,7 +27,9 @@ import { PublicLayoutComponent } from './layouts/public-layout.component';
 import { AuthService} from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard'
 import { HttpClientModule } from '@angular/common/http';
-
+import { CountryPickerService } from './common-services/country/country-picker.service';
+import { NavbarPublicModule } from './shared/navbar-public/navbar-public.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -45,20 +47,22 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardLayoutComponent,
     PublicLayoutComponent
   ],
-  imports: [ 
-  
+  imports: [  
+
 FormsModule,
   HttpClientModule,
   BrowserModule,
     RouterModule.forRoot(AppRoutes),
     SidebarModule,
     NavbarModule,
+    NavbarPublicModule,
     FooterModule,
     FixedPluginModule,
+    NgbModule.forRoot(),
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
    
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard,CountryPickerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

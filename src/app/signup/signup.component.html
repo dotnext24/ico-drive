@@ -1,8 +1,8 @@
-<navbar-cmp>
+<navbar-public-cmp>
     <div class="loader-container">
         <div class="loader"></div>
     </div>
-</navbar-cmp>
+</navbar-public-cmp>
 
 
 <div class="wrapper wrapper-full-page">
@@ -28,8 +28,7 @@
 
                                 </div>
                                 <div class="card-content">
-
-
+          
                                     <div class="form-group">
                                         <label>First name</label>
                                         <input class="form-control input-no-border" placeholder="Enter first name" type="text" [(ngModel)]="signupData.firstname"
@@ -42,6 +41,13 @@
                                             required>
                                     </div>
 
+
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <select class="form-control form-control-sm" [(ngModel)]="signupData.country" name="country" required>   
+                                            <option *ngFor="let c of countries; let i = index;" [value]="getValue(c)"> <img [hidden]="!flag" src="{{baseUrl + c.cca3}}.svg">{{getName(c)}} </option>
+                                        </select>
+                                    </div>
 
                                     <div class="form-group">
                                         <label>Email address</label>
@@ -60,7 +66,6 @@
 
                                         <p> Have an account?
                                             <a [routerLink]="['/login']">Signin here</a>
-
                                         </p>
 
                                     </div>
