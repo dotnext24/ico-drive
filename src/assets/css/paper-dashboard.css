@@ -179,7 +179,7 @@ strong {
 }
 
 .loader {
-  color: #9A9A9A;
+  color: #20273a;
   top: calc(50% - 40px);
   left: calc(50% - 10px);
   position: relative;

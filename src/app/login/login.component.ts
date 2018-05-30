@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) { }
   
   login() {
-    alert();
+   
     this.http.post('/api/signin',this.loginData).subscribe(resp => {
       this.data = resp;
       localStorage.setItem('jwtToken', this.data.token);
