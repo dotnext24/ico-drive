@@ -39,10 +39,10 @@ export class SignupComponent implements OnInit {
    }
 
   signup() {
-      
+      console.log("this.signupData",this.signupData);
     this.http.post('/api/signup',this.signupData).subscribe(resp => {
       console.log(resp);
-      this.router.navigate(['login']);
+      //this.router.navigate(['login']);
     }, err => {
       this.message = err.error.msg;
     });

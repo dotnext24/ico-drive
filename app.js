@@ -30,6 +30,10 @@ app.use('/api', api);
 
 app.use(passport.initialize());
 
+app.use('*',function(req,res) {
+  res.sendFile("dist/index.html", { root: '.' });
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
