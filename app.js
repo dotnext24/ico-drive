@@ -5,7 +5,10 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 
-var api = require('./routes/api');
+var accountApi = require('./routes/account.route');
+var userApi=require('./routes/user.route');
+var bookApi=require('./routes/book.route');
+
 var app = express();
 
 
@@ -26,8 +29,9 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
 //app.use('/', express.static(path.join(__dirname, 'dist')));
 app.use('/books', express.static(path.join(__dirname, 'dist')));
-app.use('/api', api);
-
+app.use('/api', accountApi);
+app.use('/api', userApi);
+app.use('/api', bookApi);
 app.use(passport.initialize());
 
 app.use('*',function(req,res) {

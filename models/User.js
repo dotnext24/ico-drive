@@ -3,12 +3,12 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var UserSchema = new Schema({
-  username: {
+    username: {
         type: String,
         unique: true,
         required: true
     },
-  password: {
+    password: {
         type: String,
         required: true
     },
@@ -23,10 +23,18 @@ var UserSchema = new Schema({
         type: String,
         required: true
     }
+},
+{
+    timestamps: true
 });
 
 UserSchema.pre('save', function (next) {
     var user = this;
+    // var currentDate = new Date();
+    // this.user.updated_at = currentDate;
+    // if (!this.user.created_at)
+    //     this.user.created_at = currentDate;
+
     if (this.isModified('password') || this.isNew) {
         bcrypt.genSalt(10, function (err, salt) {
             if (err) {
@@ -54,4 +62,4 @@ UserSchema.methods.comparePassword = function (passw, cb) {
     });
 };
 
-module.exports =mongoose.models.User || mongoose.model('User', UserSchema);
+module.exports = mongoose.models.User || mongoose.model('User', UserSchema);

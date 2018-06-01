@@ -9,8 +9,8 @@ var User = require("./../models/User");
 var Book = require("./../models/Book");
 
 /* GET home page. */
-router.get('/profile', function(req, res, next) {
-    res.send('Express RESTful API');
+router.get('/accounttest', function(req, res, next) {
+    res.send('accounttest RESTful API');
   });
 
 
@@ -28,7 +28,7 @@ router.get('/profile', function(req, res, next) {
       // save the user
       newUser.save(function(err) {
         if (err) {
-          return res.json({success: false, msg: 'Username already exists.'});
+          return res.json({success: false, msg: 'Username already exists.',error:err});
         }
         res.json({success: true, msg: 'Successful created new user.'});
       });
@@ -60,42 +60,7 @@ router.get('/profile', function(req, res, next) {
     });
   });
 
-  //books api
-
-  router.post('/book', passport.authenticate('jwt', { session: false}), function(req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-      console.log(req.body);
-      var newBook = new Book({
-        isbn: req.body.isbn,
-        title: req.body.title,
-        author: req.body.author,
-        publisher: req.body.publisher
-      });
   
-      newBook.save(function(err) {
-        if (err) {
-          return res.json({success: false, msg: 'Save book failed.'});
-        }
-        res.json({success: true, msg: 'Successful created new book.'});
-      });
-    } else {
-      return res.status(403).send({success: false, msg: 'Unauthorized.'});
-    }
-  });
-
-  router.get('/book', passport.authenticate('jwt', { session: false}), function(req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-      Book.find(function (err, books) {
-        if (err) return next(err);
-        res.json(books);
-      });
-    } else {
-      return res.status(403).send({success: false, msg: 'Unauthorized.'});
-    }
-  });
-
   //helpers
   getToken = function (headers) {
     if (headers && headers.authorization) {

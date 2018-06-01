@@ -41,12 +41,16 @@ export class SignupComponent implements OnInit {
   signup() {
       console.log("this.signupData",this.signupData);
     this.http.post('/api/signup',this.signupData).subscribe(resp => {
-      console.log(resp);
-      //this.router.navigate(['login']);
+      console.log(resp['msg']);
+      if(resp['success'])
+      this.router.navigate(['login']);
+      else
+      this.message = resp['msg'];
     }, err => {
       this.message = err.error.msg;
     });
   }
+  
   public getValue(obj: ICountry) {
     return _.get(obj, this.setValue);
   }
