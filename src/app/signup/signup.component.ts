@@ -17,6 +17,7 @@ import { resetFakeAsyncZone } from '@angular/core/testing';
 export class SignupComponent implements OnInit {
   signupData = { username: '', password: '', country: '', firstname: '', lastname: '' };
   message = '';
+  error='';
   private dataUrl = 'countries.json';
   private data: Observable<ICountry[]> = null;
   public countries: ICountry[];
@@ -71,7 +72,7 @@ export class SignupComponent implements OnInit {
         this.processing = false;
       }
     }, err => {
-      this.message = err.error.msg;
+      this.message=this.error = err.error.msg;
       this.processing = false;
     });
   }
