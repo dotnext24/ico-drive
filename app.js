@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var accountApi = require('./routes/account.route');
 var userApi=require('./routes/user.route');
 var bookApi=require('./routes/book.route');
+var mailApi=require('./routes/mail.route');
 
 var app = express();
 
@@ -32,6 +33,9 @@ app.use('/books', express.static(path.join(__dirname, 'dist')));
 app.use('/api', accountApi);
 app.use('/api', userApi);
 app.use('/api', bookApi);
+app.use('/api', mailApi);
+
+
 app.use(passport.initialize());
 
 app.use('*',function(req,res) {

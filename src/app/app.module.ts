@@ -30,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CountryPickerService } from './common-services/country/country-picker.service';
 import { NavbarPublicModule } from './shared/navbar-public/navbar-public.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     SignupComponent,
     DashboardLayoutComponent,
-    PublicLayoutComponent
+    PublicLayoutComponent,
+    AccountComponent
   ],
   imports: [  
 

@@ -7,10 +7,11 @@
 var app = require('../app');
 var debug = require('debug')('mean-secure:server');
 var http = require('http');
-
+var nodemailer = require("nodemailer");
 /**
  * Get port from environment and store in Express.
  */
+
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

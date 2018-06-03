@@ -12,12 +12,14 @@ import { SignupComponent } from './signup/signup.component';
 import { PublicLayoutComponent } from './layouts/public-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AccountComponent } from './account/account.component';
 
 
 
 const PUBLIC_ROUTES: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'account/:task/:uname/:token', component: AccountComponent},
   { path: 'signup', component: SignupComponent }
 ];
 
@@ -27,7 +29,6 @@ const SECURE_ROUTES: Routes = [
 ];
 
 export const AppRoutes: Routes = [
-
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '', component: PublicLayoutComponent, data: { title: 'Members' }, children: PUBLIC_ROUTES },
   { path: '', component: DashboardLayoutComponent, canActivate: [AuthGuard], data: { title: 'Dashboard' }, children: SECURE_ROUTES },

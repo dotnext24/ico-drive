@@ -15,9 +15,10 @@
                         <form novalidate="" class="ng-untouched ng-pristine ng-valid" (ngSubmit)="signup()" #signupForm="ngForm">
                             <div class="card login-card" data-background="color" data-color="blue">
                                 <div class="card-header">
-                                    <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="message !== ''">
 
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <div class="alert {{error==''?'alert-success':'alert-warning'}}  alert-dismissible" role="alert" *ngIf="message !== ''">
+{{error}}
+                                        <button style="right: 3px;" type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
 
@@ -61,7 +62,8 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <button class="btn btn-fill btn-wd " type="submit" [disabled]="!signupForm.form.valid">Sign in</button>
+                                   
+                                    <button  class="btn btn-fill btn-wd " type="submit" [disabled]="!signupForm.form.valid || processing">{{!processing?'Sign in':'Processing...'}}</button>
                                     <div class="forgot">
 
                                         <p> Have an account?

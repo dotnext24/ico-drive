@@ -22,6 +22,21 @@ var UserSchema = new Schema({
     country: {
         type: String,
         required: true
+    },
+    active:{
+        type: Boolean, default: false
+    },
+    activation_token:{
+      type:String
+    },
+    activation_token_expiry:{
+        type:Date
+    },
+    password_reset_token:{
+        type:String
+    },
+    password_reset_token_expiry:{
+        type:Date
     }
 },
 {
