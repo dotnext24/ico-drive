@@ -30,7 +30,8 @@ router.post('/activation-email', function (req, res) {
                     console.log('res', response);
                     return res.json({ success: true, msg: 'Successful sent activation email.' });
 
-                }, err => {
+                }).catch(err => {
+                    console.log("error router.post('/activation-email'",err);
                     return res.json({ success: false, msg: 'Email failed.', err: error });
                 })
             }
