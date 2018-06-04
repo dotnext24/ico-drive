@@ -42,6 +42,41 @@
                               </div>
                           </div>
                       </form>
+
+
+                      <form *ngIf="state=='reset-password'" novalidate="" class="ng-untouched ng-pristine ng-valid" (ngSubmit)="resetPassword()" #resetForm="ngForm">
+                        <div class="card login-card" data-background="color" data-color="blue">
+                            <div class="card-header">
+                                    
+                                        <h3 class="card-title">Reset Your Password</h3>
+
+                            </div>
+                            <div class="card-content">
+                                <div class="form-group">
+                                    <label>New Password</label>
+                                    <input class="form-control input-no-border" placeholder="Enter email" type="password" [(ngModel)]="resetData.password" name="password" required>
+                                </div>
+                               
+                            </div>
+
+                            <div class="card-content">
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input class="form-control input-no-border" placeholder="Enter email" type="password" [(ngModel)]="resetData.confirmPassword" name="confirmPassword" required>
+                                </div>
+                               
+                            </div>
+
+                            <div class="card-footer text-center">
+                                <button class="btn btn-fill btn-wd" type="submit" [disabled]="!resetForm.form.valid">Submit</button>
+                               
+                                
+                            </div>
+                        </div>
+                    </form>
+
+
+
                   </div>
               </div>
           </div>

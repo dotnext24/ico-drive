@@ -64,7 +64,7 @@ router.post('/reset-password-email', function (req, res) {
                 var result = mailService.sendResetPasswordEmail(req.body.to,link,name);
                 result.then(response => {
                     console.log('res', response);
-                    return res.json({ success: true, msg: 'Successful sent password reset email.' });
+                    return res.json({ success: true, msg: 'Password reset link has been to '+req.body.to+'. Please check your inbox.' });
 
                 }).catch(err => {
                     console.log("error router.post('/activation-email'",err);

@@ -12,7 +12,7 @@ export class AccountComponent implements OnInit {
   processing:false;
   state='';
   resetPasswordData={to:''};
-  resetData={username:'',password:'',confirmPassword:''};
+  resetData={username:'',password:'',confirmPassword:'',token:''};
 
   constructor(private http: HttpClient, private route: ActivatedRoute,
     private router: Router,) { 
@@ -44,7 +44,8 @@ export class AccountComponent implements OnInit {
      {
        this.state=task;
        this.resetData.username=uname;
-       console.log('');
+       this.resetData.token=token;
+       console.log('reset-password',this.state);
      }
 
     });
@@ -70,7 +71,7 @@ export class AccountComponent implements OnInit {
     if(this.resetData.confirmPassword=this.resetData.password)
     {
 
-    this.http.post('/api/reset-password',{username:this.resetData.username,password:this.resetData.password}).subscribe(resp => {
+    this.http.post('/api/reset-password',{username:this.resetData.username,password:this.resetData.password,token:this.resetData.token}).subscribe(resp => {
       this.message=resp['msg'];
       console.log('reset Data msg',resp['msg']);
     }, err => {
