@@ -60,7 +60,7 @@ router.post('/reset-password-email', function (req, res) {
                 var name=user.firstname+' '+user.lastname;
                 //var port=(req.socket.localPort)?':'+req.socket.localPort:'';
                 var port='';
-                var link=req.protocol+'://'+req.host+''+port+'/account/reset-password/'+req.body.to+'/'+user.activation_token;
+                var link=req.protocol+'://'+req.host+''+port+'/account/reset-password/'+req.body.to+'/'+user.password_reset_token;
                 var result = mailService.sendResetPasswordEmail(req.body.to,link,name);
                 result.then(response => {
                     console.log('res', response);

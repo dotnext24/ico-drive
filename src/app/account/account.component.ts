@@ -68,7 +68,7 @@ export class AccountComponent implements OnInit {
   {
     console.log('reset Data',this.resetData);
     
-    if(this.resetData.confirmPassword=this.resetData.password)
+    if(this.resetData.confirmPassword==this.resetData.password)
     {
 
     this.http.post('/api/reset-password',{username:this.resetData.username,password:this.resetData.password,token:this.resetData.token}).subscribe(resp => {
