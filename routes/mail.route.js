@@ -23,7 +23,8 @@ router.post('/activation-email', function (req, res) {
             if (!err) {
                 console.log('user', user);
                 var name=user.firstname+' '+user.lastname;
-                var port=(req.socket.localPort)?':'+req.socket.localPort:'';
+                //var port=(req.socket.localPort)?':'+req.socket.localPort:'';
+                var port='';
                 var link=req.protocol+'://'+req.host+''+port+'/account/activate/'+req.body.to+'/'+user.activation_token;
                 var result = mailService.sendAccountActivationEmail(req.body.to,link,name);
                 result.then(response => {
