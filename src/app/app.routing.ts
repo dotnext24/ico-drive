@@ -13,6 +13,14 @@ import { PublicLayoutComponent } from './layouts/public-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MyWalletComponent } from './my-wallet/my-wallet.component';
+import { CommingSoonComponent } from './comming-soon/comming-soon.component';
+import { AffiliateComponent } from './affiliate/affiliate.component';
+import { SupportComponent } from './support/support.component';
+import { SettingComponent } from './setting/setting.component';
+import { WhitePaperComponent } from './white-paper/white-paper.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -26,6 +34,15 @@ const PUBLIC_ROUTES: Routes = [
 const SECURE_ROUTES: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
+
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'my-wallet', component: MyWalletComponent, canActivate: [AuthGuard] },
+  { path: 'comming-soon', component: CommingSoonComponent, canActivate: [AuthGuard] },
+  { path: 'affiliate', component: AffiliateComponent, canActivate: [AuthGuard] },
+  { path: 'support', component: SupportComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingComponent, canActivate: [AuthGuard] },
+  { path: 'whitepaper', component: WhitePaperComponent, canActivate: [AuthGuard] },
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] }
 ];
 
 export const AppRoutes: Routes = [

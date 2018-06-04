@@ -31,6 +31,14 @@ import { CountryPickerService } from './common-services/country/country-picker.s
 import { NavbarPublicModule } from './shared/navbar-public/navbar-public.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MyWalletComponent } from './my-wallet/my-wallet.component';
+import { AffiliateComponent } from './affiliate/affiliate.component';
+import { CommingSoonComponent } from './comming-soon/comming-soon.component';
+import { SupportComponent } from './support/support.component';
+import { SettingComponent } from './setting/setting.component';
+import { WhitePaperComponent } from './white-paper/white-paper.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +55,15 @@ import { AccountComponent } from './account/account.component';
     SignupComponent,
     DashboardLayoutComponent,
     PublicLayoutComponent,
-    AccountComponent
+    AccountComponent,
+    ProfileComponent,
+    MyWalletComponent,
+    AffiliateComponent,
+    CommingSoonComponent,
+    SupportComponent,
+    SettingComponent,
+    WhitePaperComponent,
+    LogoutComponent
   ],
   imports: [  
 
