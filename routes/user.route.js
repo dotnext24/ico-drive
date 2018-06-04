@@ -11,6 +11,7 @@ router.get('/usertest', function(req, res, next) {
 
 router.get('/user/:username', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
+    
     if (token) {
         var uname=req.params.username;
         Person.find({username: uname},function (err, user) {
