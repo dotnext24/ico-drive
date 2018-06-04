@@ -80,6 +80,48 @@ router.post('/activate-account', function (req, res) {
 });
 
 
+//reset password
+
+router.post('/reset-password', function (req, res) {
+  User.findOne({
+    username: req.body.username
+  }, function (err, user) {
+    if (err) throw err;
+
+    if (!user) {
+     
+      res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
+    } else {
+      console.log(user);
+      if(!user.active)
+      {
+      if (user.password_reset_token == req.body.token) {
+        if (new Date() < user.password_reset_token_expiry) {
+          
+          user.password=req.body.password;
+
+          user.save(function (err, updatedUser) {
+            console.log('updatedTank ',updatedUser);
+          })
+          res.status(200).send({ success: true, msg: 'Your account password has reset successfully. You can log into your account' });
+        }
+        else {
+          res.status(200).send({ success: false, msg: 'Password reset link has been expired.' });
+        }
+      }
+      else {
+        res.status(200).send({ success: false, msg: 'Password reset link is incorrect' });
+      }
+    }
+      else
+      {
+        res.status(200).send({ success: true, msg: 'Your account is acready activated. You can log into your account' });
+      }
+    }
+  });
+});
+
+
 router.post('/signin', function (req, res) {
   User.findOne({
     username: req.body.username

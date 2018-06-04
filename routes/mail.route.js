@@ -54,12 +54,12 @@ router.post('/reset-password-email', function (req, res) {
 
         const uuidv4 = require('uuid/v4');
         const password_reset_token = uuidv4();
-        User.findOneAndUpdate({ username: req.body.to }, { password_reset_token: activation_token, password_reset_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
+        User.findOneAndUpdate({ username: req.body.to }, { password_reset_token: password_reset_token, password_reset_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
             if (!err) {
                
                 var name=user.firstname+' '+user.lastname;
-                var port=(req.socket.localPort)?':'+req.socket.localPort:'';
-                //var port='';
+                //var port=(req.socket.localPort)?':'+req.socket.localPort:'';
+                var port='';
                 var link=req.protocol+'://'+req.host+''+port+'/account/reset-password/'+req.body.to+'/'+user.activation_token;
                 var result = mailService.sendResetPasswordEmail(req.body.to,link,name);
                 result.then(response => {

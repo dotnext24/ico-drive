@@ -38,7 +38,7 @@
                                     <div class="card-footer text-center">
                                         <button class="btn btn-fill btn-wd" type="submit" [disabled]="!loginForm.form.valid">Sign in</button>
                                         <div class="forgot">
-                                            <a href="#pablo">Forgot your password?</a>
+                                            <a [routerLink]="['/account/reset-password-request/an/token']">Forgot your password?</a>
 
                                         </div>
                                         <p>

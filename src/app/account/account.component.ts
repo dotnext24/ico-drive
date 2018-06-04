@@ -12,6 +12,7 @@ export class AccountComponent implements OnInit {
   processing:false;
   state='';
   resetPasswordData={to:''};
+  resetData={username:'',password:'',confirmPassword:''};
 
   constructor(private http: HttpClient, private route: ActivatedRoute,
     private router: Router,) { 
@@ -37,6 +38,15 @@ export class AccountComponent implements OnInit {
      {
        this.state=task;
      }
+
+     //reset-password
+     if(task=='reset-password')
+     {
+       this.state=task;
+       this.resetData.username=uname;
+       console.log('');
+     }
+
     });
      
 
@@ -44,12 +54,35 @@ export class AccountComponent implements OnInit {
 
   sendResetPasswordEmail()
   {
+    console.log('this.resetPasswordData',this.resetPasswordData);
     
     this.http.post('/api/reset-password-email',this.resetPasswordData).subscribe(resp => {
       this.message=resp['msg'];
     }, err => {
       this.message = err.error.msg;
     });
+  }
+
+  resetPassword()
+  {
+    console.log('reset Data',this.resetData);
+    
+    if(this.resetData.confirmPassword=this.resetData.password)
+    {
+
+    this.http.post('/api/reset-password',{username:this.resetData.username,password:this.resetData.password}).subscribe(resp => {
+      this.message=resp['msg'];
+      console.log('reset Data msg',resp['msg']);
+    }, err => {
+      console.log('reset Data err',err);
+      this.message = err.error.msg;
+    });
+  }
+  else
+  {
+    this.message = "Password and confirm password not matched.";
+  }
+
   }
 
   ngOnInit() {
