@@ -93,7 +93,7 @@ router.post('/reset-password', function (req, res) {
       res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
     } else {
       console.log(user);
-      if(!user.active)
+      if(user.active)
       {
       if (user.password_reset_token == req.body.token) {
         if (new Date() < user.password_reset_token_expiry) {
@@ -115,7 +115,7 @@ router.post('/reset-password', function (req, res) {
     }
       else
       {
-        res.status(200).send({ success: true, msg: 'Your account is acready activated. You can log into your account' });
+        res.status(200).send({ success: true, msg: 'Your account is not active.' });
       }
     }
   });
