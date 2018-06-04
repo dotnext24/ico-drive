@@ -89,6 +89,8 @@ router.post('/signin', function (req, res) {
     if (!user) {
       res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
     } else {
+      if(user.active)
+      {
       // check if password matches
       user.comparePassword(req.body.password, function (err, isMatch) {
         if (isMatch && !err) {
@@ -100,6 +102,13 @@ router.post('/signin', function (req, res) {
           res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
         }
       });
+      
+    }
+    else
+    {
+      res.json({ success: false, msg: 'Please activate your account. Activation email has been sent to '+user.username });
+    }
+
     }
   });
 });

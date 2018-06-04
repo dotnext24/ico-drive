@@ -21,40 +21,24 @@
             
                     </div>
                     
-                    <form *ngIf="state!=''" novalidate="" class="ng-untouched ng-pristine ng-valid" (ngSubmit)="login()" #loginForm="ngForm">
+                    <form *ngIf="state=='reset-password-request'" novalidate="" class="ng-untouched ng-pristine ng-valid" (ngSubmit)="sendResetPasswordEmail()" #resetPasswordForm="ngForm">
                           <div class="card login-card" data-background="color" data-color="blue">
                               <div class="card-header">
-                                      <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="message !== ''">
-
-                                              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    
-                                              {{message}}
-                                    
-                                            </div>
-                                          <h3 class="card-title">Login</h3>
+                                      
+                                          <h3 class="card-title">Reset Password Request</h3>
 
                               </div>
                               <div class="card-content">
                                   <div class="form-group">
                                       <label>Email address</label>
-                                      <input class="form-control input-no-border" placeholder="Enter email" type="email" [(ngModel)]="loginData.username" name="username" required>
+                                      <input class="form-control input-no-border" placeholder="Enter email" type="email" [(ngModel)]="resetPasswordData.to" name="username" required>
                                   </div>
-                                  <div class="form-group">
-                                      <label>Password</label>
-                                      <input class="form-control input-no-border" placeholder="Password" type="password" [(ngModel)]="loginData.password" name="password" required>
-                                  </div>
+                                 
                               </div>
                               <div class="card-footer text-center">
-                                  <button class="btn btn-fill btn-wd" type="submit" [disabled]="!loginForm.form.valid">Sign in</button>
-                                  <div class="forgot">
-                                      <a href="#pablo">Forgot your password?</a>
-
-                                  </div>
-                                  <p>
-
-                                          Not a member? <a [routerLink]="['/signup']">Signup here</a>
-                              
-                                      </p>
+                                  <button class="btn btn-fill btn-wd" type="submit" [disabled]="!resetPasswordForm.form.valid">Submit</button>
+                                 
+                                  
                               </div>
                           </div>
                       </form>

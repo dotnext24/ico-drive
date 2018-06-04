@@ -19,7 +19,7 @@ router.post('/activation-email', function (req, res) {
 
         const uuidv4 = require('uuid/v4');
         const activation_token = uuidv4();
-        User.findOneAndUpdate({ username: req.body.to }, { activation_token_expiry: activation_token, activation_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
+        User.findOneAndUpdate({ username: req.body.to }, { activation_token: activation_token, activation_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
             if (!err) {
                 console.log('user', user);
                 var name=user.firstname+' '+user.lastname;
@@ -46,6 +46,42 @@ router.post('/activation-email', function (req, res) {
         return res.status(400).send({ success: false, msg: 'Bad request.' });
     }
 });
+
+
+router.post('/reset-password-email', function (req, res) {
+
+    if (req.body.to) {
+
+        const uuidv4 = require('uuid/v4');
+        const password_reset_token = uuidv4();
+        User.findOneAndUpdate({ username: req.body.to }, { password_reset_token: activation_token, password_reset_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
+            if (!err) {
+               
+                var name=user.firstname+' '+user.lastname;
+                var port=(req.socket.localPort)?':'+req.socket.localPort:'';
+                //var port='';
+                var link=req.protocol+'://'+req.host+''+port+'/account/reset-password/'+req.body.to+'/'+user.activation_token;
+                var result = mailService.sendResetPasswordEmail(req.body.to,link,name);
+                result.then(response => {
+                    console.log('res', response);
+                    return res.json({ success: true, msg: 'Successful sent password reset email.' });
+
+                }).catch(err => {
+                    console.log("error router.post('/activation-email'",err);
+                    return res.json({ success: false, msg: 'Email failed.', err: error });
+                })
+            }
+
+
+        });
+
+
+
+    } else {
+        return res.status(400).send({ success: false, msg: 'Bad request.' });
+    }
+});
+
 
 module.exports = router;
 
