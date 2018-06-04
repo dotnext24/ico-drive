@@ -1,7 +1,12 @@
-.login-card{
+/* .login-card{
   padding: 20px;
   background-color: #eee;
+} */
+
+.form-control{
+  border: 2px solid #20273a;
 }
+
 .forgot{
   margin-top: 5px;
 }
