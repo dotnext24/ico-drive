@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginData = { username:'', password:'' };
   message = '';
   data: any;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private authService:AuthService) { }
   
   login() {
    
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
       this.data = resp;
       localStorage.setItem('jwtToken', this.data.token);
       localStorage.setItem('username', this.data.username);
-
+      this.authService.login(this.loginData);
       this.router.navigate(['dashboard']);
 
     }, err => {

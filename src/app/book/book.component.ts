@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { tap, catchError } from 'rxjs/operators';
@@ -26,10 +26,13 @@ export class BookComponent implements OnInit {
       this.router.navigate(['login']);
     }
     
-    
+    let params = new HttpParams().set('isbn','gtr');
+
     let httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') }),
+      params: {'isbn':'gtr'}
     };
+    
     this.http.get('/api/book', httpOptions).subscribe(data => {
       console.log('data',data);
       this.books = data;

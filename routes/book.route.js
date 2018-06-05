@@ -4,7 +4,7 @@ var config = require('../config/database');
 var express = require('express');
 var router = express.Router();
 var User = require("./../models/User");
-
+var Book = require("./../models/Book");
 
 router.get('/booktest', function(req, res, next) {
   res.send('booktest RESTful API');
@@ -33,13 +33,16 @@ router.post('/book', passport.authenticate('jwt', { session: false}), function(r
   }
 });
 
-router.get('/book', passport.authenticate('jwt', { session: false}), function(req, res) {
-  var token = getToken(req.headers);
+router.get('/book/:isbn', passport.authenticate('jwt', { session: false}), function(req, res) {
+  var token =" getToken(req.headers)";
+  console.log(token);
   if (token) {
-    Book.find(function (err, books) {
-      if (err) return next(err);
-      res.json(books);
-    });
+    res.json('books')
+    //var isbn=req.params.isbn;
+    // Book.find({isbn:'gtr'},function (err, books) {
+    //   if (err) return next(err);
+    //   res.json(books);
+    // });
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
   }

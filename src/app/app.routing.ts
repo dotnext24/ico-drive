@@ -21,6 +21,7 @@ import { SupportComponent } from './support/support.component';
 import { SettingComponent } from './setting/setting.component';
 import { WhitePaperComponent } from './white-paper/white-paper.component';
 import { LogoutComponent } from './logout/logout.component';
+import { BookComponent } from './book/book.component';
 
 
 
@@ -33,7 +34,7 @@ const PUBLIC_ROUTES: Routes = [
 
 const SECURE_ROUTES: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
+  { path: 'book', component: BookComponent, canActivate: [AuthGuard] },
 
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'my-wallet', component: MyWalletComponent, canActivate: [AuthGuard] },

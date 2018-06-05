@@ -9,12 +9,13 @@ router.get('/usertest', function(req, res, next) {
   res.send('usertest RESTful API');
 });
 
-router.get('/user/:username', passport.authenticate('jwt', { session: false}), function(req, res) {
+router.get('/user', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
-    
+  
     if (token) {
-        var uname=req.params.username;
-        Person.find({username: uname},function (err, user) {
+        //var uname=req.params.username;
+       
+        User.find(function (err, user) {
         if (err) return next(err);
         res.json(user);
       });

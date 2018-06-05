@@ -8,7 +8,11 @@ export class AuthService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   get isLoggedIn() {
+    var username=localStorage.getItem('username');
+  console.log('username',username);
+  if(username)
     this.loggedIn.next(true);
+  
     return this.loggedIn.asObservable();
   }
 
@@ -16,7 +20,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  login(user: User) {
+  login(user) {
     if (user.userName !== '' && user.password !== '' ) {
       this.loggedIn.next(true);
       this.router.navigate(['/']);

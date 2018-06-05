@@ -18,9 +18,12 @@ export class ProfileComponent implements OnInit {
       headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
     };
     var username=localStorage.getItem('username');
-    this.http.get('/api/user?username'+username, httpOptions).subscribe(data => {
-      console.log('data',data);
-      this.user = data;
+ 
+    this.http.get('/api/user', httpOptions).subscribe(data => {
+      console.log('data',data as Array<any>);
+      var arr=data as Array<any>;
+     
+      this.user = arr.filter(x=>x.username==username)[0];
       console.log(this.user);
     }, err => {
       console.log('err',err);

@@ -39,11 +39,13 @@ import { SupportComponent } from './support/support.component';
 import { SettingComponent } from './setting/setting.component';
 import { WhitePaperComponent } from './white-paper/white-paper.component';
 import { LogoutComponent } from './logout/logout.component';
+import { BookComponent } from './book/book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    BookComponent,
     UserComponent,
     TableComponent,
     TypographyComponent,
