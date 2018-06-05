@@ -148,7 +148,7 @@ router.post('/signin', function (req, res) {
     }
     else
     {
-      res.json({ success: false, msg: 'Please activate your account. Activation email has been sent to '+user.username });
+      res.json({ success: false, msg: 'You have not activated your account. Please activate your account. Activation email has been sent to '+user.username });
     }
 
     }

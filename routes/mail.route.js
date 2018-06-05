@@ -25,7 +25,7 @@ router.post('/activation-email', function (req, res) {
                 var name=user.firstname+' '+user.lastname;
                 //var port=(req.socket.localPort)?':'+req.socket.localPort:'';
                 var port='';
-                var link=req.protocol+'://'+req.host+''+port+'/account/activate/'+req.body.to+'/'+user.activation_token;
+                var link=req.protocol+'://'+req.host+''+port+'/account/activate/'+req.body.to+'/'+activation_token;
                 var result = mailService.sendAccountActivationEmail(req.body.to,link,name);
                 result.then(response => {
                     console.log('res', response);
@@ -67,7 +67,7 @@ router.post('/reset-password-email', function (req, res) {
                     return res.json({ success: true, msg: 'Password reset link has been to '+req.body.to+'. Please check your inbox.' });
 
                 }).catch(err => {
-                    console.log("error router.post('/activation-email'",err);
+                    console.log("error router.post('/reset-password-email'",err);
                     return res.json({ success: false, msg: 'Email failed.', err: error });
                 })
             }

@@ -20,11 +20,20 @@ export class LoginComponent implements OnInit {
   login() {
    
     this.http.post('/api/signin',this.loginData).subscribe(resp => {
+      console.log(resp);
+      if(resp['success'])
+      {
+      
       this.data = resp;
       localStorage.setItem('jwtToken', this.data.token);
       localStorage.setItem('username', this.data.username);
       this.authService.login(this.loginData);
       this.router.navigate(['dashboard']);
+      }
+      else
+      {
+        this.message = resp['msg'];
+      }
 
     }, err => {
       this.message = err.error.msg;
