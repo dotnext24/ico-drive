@@ -40,6 +40,7 @@ import { SettingComponent } from './setting/setting.component';
 import { WhitePaperComponent } from './white-paper/white-paper.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BookComponent } from './book/book.component';
+import { NewbookComponent } from './newbook/newbook.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { BookComponent } from './book/book.component';
     SupportComponent,
     SettingComponent,
     WhitePaperComponent,
-    LogoutComponent
+    LogoutComponent,
+    NewbookComponent
   ],
   imports: [  
 

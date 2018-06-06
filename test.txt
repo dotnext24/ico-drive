@@ -3,3 +3,25 @@ https://demos.creative-tim.com/paper-dashboard-angular/
 https://www.djamware.com/post/5a878b3c80aca7059c142979/securing-mean-stack-angular-5-web-application-using-passport
 
 https://github.com/valor-software/ng2-select
+
+The website was very slow, it was loading /vendor.bundle.js of 5MB and /scripts.bundle.js of 665KB, you need to find a way to reduce those to less than 1MB, as it drastically affects performance of the website.
+When on mobile, the menu are not visible.
+
+I can't find ICO Dashboard link in the header menu.
+
+Under sign up page, the submit button should be Sign Up and password should be 6 or more letters, and there should be username field as seen in the flowchart.
+Sign in page needs to have a "Remember m
+
+Footer should have a Powered by Turnkey ICO(hyperlink), Popup Terms/Disclaimer, Privacy Policy, Faq.
+
+Whitepaper and Support are to be Hyperlinks (Open in New Page)
+
+The home page was to be an empty HTML page.
+
+Where is the backend management (admin dashboard)
+
+User should be able to edit their profile except Username with confirmation mail.
+
+Spelling Corrections:
+i. Turnkey ICO not Trunkey ICO
+ii. Coming Soon not Comming Soon
