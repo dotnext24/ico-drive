@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer, ElementRef } from '@angular/core';
+import { AuthService } from './../auth/auth.service';
+import { Dashboard_ROUTES, Public_ROUTES } from '../app.menu';
 
-declare var $:any;
+declare var $: any;
 
 export interface RouteInfo {
     path: string;
@@ -9,16 +11,7 @@ export interface RouteInfo {
     class: string;
 }
 
-export const ROUTES: RouteInfo[] = [
-    { path: 'dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
-    { path: 'user', title: 'User Profile',  icon:'ti-user', class: '' },
-    { path: 'table', title: 'Table List',  icon:'ti-view-list-alt', class: '' },
-    { path: 'typography', title: 'Typography',  icon:'ti-text', class: '' },
-    { path: 'icons', title: 'Icons',  icon:'ti-pencil-alt2', class: '' },
-    { path: 'maps', title: 'Maps',  icon:'ti-map', class: '' },
-    { path: 'notifications', title: 'Notifications',  icon:'ti-bell', class: '' },
-    { path: 'upgrade', title: 'Upgrade to PRO',  icon:'ti-export', class: 'active-pro' },
-];
+
 
 @Component({
     moduleId: module.id,
@@ -27,12 +20,70 @@ export const ROUTES: RouteInfo[] = [
 })
 
 export class SidebarComponent implements OnInit {
-    public menuItems: any[];
-    ngOnInit() {
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
+    public menus: any[];
+    private listTitles: any[];
+    location: Location;
+    private nativeElement: Node;
+    private toggleButton;
+    private sidebarVisible: boolean;
+
+    constructor( private renderer: Renderer, private element: ElementRef, private authService: AuthService) {
+        //this.location = location;
+        this.nativeElement = element.nativeElement;
+        this.sidebarVisible = false;
     }
-    isNotMobileMenu(){
-        if($(window).width() > 991){
+    ngOnInit() {
+        if (this.authService.isLoggedIn)
+            this.menus = Dashboard_ROUTES.filter(menuItem => menuItem);
+        else
+            this.menus = Public_ROUTES.filter(menuItem => menuItem);
+
+        console.log(this.menus);
+        
+        var navbar: HTMLElement = this.element.nativeElement;
+        //this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+        this.toggleButton=document.getElementsByName('btnToggle')[0];
+        console.log(this.toggleButton);
+    }
+
+
+    clickMenu()
+    {
+        var toggleButton = this.toggleButton;
+        this.toggleButton.classList.remove('toggled');
+        document.body.className = document.body.className.replace('nav-open','');
+    }
+
+
+
+    sidebarToggle() {
+
+        var toggleButton = this.toggleButton;
+        var body = document.getElementsByTagName('body')[0];
+
+        if (this.sidebarVisible == false) {
+            setTimeout(function () {                
+                toggleButton.classList.add('toggled');
+            }, 500);
+            //body.classList.add('nav-open');
+
+            this.renderer.setElementClass(document.body, 'nav-open', true);
+
+            this.sidebarVisible = true;
+        } else {
+            this.toggleButton.classList.remove('toggled');
+            this.sidebarVisible = false;
+            //body.classList.remove('nav-open');
+
+
+            document.body.className = document.body.className.replace('nav-open','');
+            //this.renderer. (document.body, 'nav-open', true);
+            
+        }
+    }
+
+    isNotMobileMenu() {
+        if ($(window).width() > 991) {
             return false;
         }
         return true;

@@ -4,7 +4,8 @@ https://www.djamware.com/post/5a878b3c80aca7059c142979/securing-mean-stack-angul
 
 https://github.com/valor-software/ng2-select
 
-The website was very slow, it was loading /vendor.bundle.js of 5MB and /scripts.bundle.js of 665KB, you need to find a way to reduce those to less than 1MB, as it drastically affects performance of the website.
+done The website was very slow, it was loading /vendor.bundle.js of 5MB and /scripts.bundle.js of 665KB, you need to find a way to reduce those to less than 1MB, as it drastically affects performance of the website.
+
 When on mobile, the menu are not visible.
 
 I can't find ICO Dashboard link in the header menu.

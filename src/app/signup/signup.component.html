@@ -1,8 +1,3 @@
-<navbar-public-cmp>
-    <div class="loader-container">
-        <div class="loader"></div>
-    </div>
-</navbar-public-cmp>
 
 
 <div class="wrapper wrapper-full-page">
@@ -46,7 +41,7 @@
                                     <div class="form-group">
                                         <label>Country</label>
                                         <select class="form-control form-control-sm" [(ngModel)]="signupData.country" name="country" required>   
-                                            <option *ngFor="let c of countries; let i = index;" [value]="getValue(c)"> <img [hidden]="!flag" src="{{baseUrl + c.cca3}}.svg">{{getName(c)}} </option>
+                                            <option *ngFor="let c of countries; let i = index;" [value]="getValue(c)"> {{getName(c)}} </option>
                                         </select>
                                     </div>
 

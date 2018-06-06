@@ -1,7 +1,22 @@
 
-
+<!-- <div class="sidebar" data-background-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
 <div class="wrapper" >
         <navbar-cmp></navbar-cmp>
         <router-outlet></router-outlet>       
         <footer-cmp></footer-cmp>   
-</div>
+</div> -->
+
+
+<div class="wrapper">
+        <div *ngIf="isNotMobileMenu()" class="sidebar" data-background-color="white" data-active-color="danger">
+            <sidebar-cmp></sidebar-cmp>           
+        </div>
+        <div class="main-panel-dashboard">
+            <navbar-cmp></navbar-cmp>
+            <router-outlet></router-outlet>
+            <footer-cmp></footer-cmp>
+        </div>
+    </div>
+  
