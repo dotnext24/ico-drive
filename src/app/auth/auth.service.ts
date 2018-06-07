@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observer } from 'rxjs';
 import { User } from './user';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import { StorageService } from '../storage.service';
 
 @Injectable()
