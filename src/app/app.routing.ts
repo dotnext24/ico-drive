@@ -27,7 +27,7 @@ import { HomeComponent } from './home/home.component';
 
 
 const PUBLIC_ROUTES: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'account/:task/:uname/:token', component: AccountComponent},
   { path: 'signup', component: SignupComponent },
@@ -49,10 +49,10 @@ const SECURE_ROUTES: Routes = [
 ];
 
 export const AppRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '', component: PublicLayoutComponent, data: { title: 'Members' }, children: PUBLIC_ROUTES },
   { path: '', component: DashboardLayoutComponent, canActivate: [AuthGuard], data: { title: 'Dashboard' }, children: SECURE_ROUTES },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'home' }
 
     // {
     //     path: '',
