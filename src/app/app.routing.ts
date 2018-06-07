@@ -23,6 +23,7 @@ import { WhitePaperComponent } from './white-paper/white-paper.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BookComponent } from './book/book.component';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -31,7 +32,8 @@ const PUBLIC_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'account/:task/:uname/:token', component: AccountComponent},
   { path: 'signup', component: SignupComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'page-not-found', component: PageNotFoundComponent }
 ];
 
 const SECURE_ROUTES: Routes = [

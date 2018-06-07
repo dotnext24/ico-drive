@@ -43,6 +43,7 @@ import { BookComponent } from './book/book.component';
 import { NewbookComponent } from './newbook/newbook.component';
 import { StorageService } from './storage.service';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { HomeComponent } from './home/home.component';
     WhitePaperComponent,
     LogoutComponent,
     NewbookComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [  
 
