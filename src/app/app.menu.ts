@@ -6,14 +6,14 @@ export interface RouteInfo {
 }
 
 export const Public_ROUTES: RouteInfo[] = [
-   
+    { path: 'home', title: 'Home',  icon: 'ti-home', class: ''  },
     { path: 'login', title: 'Login',  icon: 'ti-arrow-circle-right', class: ''  },
     { path: 'signup', title: 'Register',  icon: 'ti-user', class: ''  }
 ];
 
 
 export const Dashboard_ROUTES: RouteInfo[] = [
-    // { path: 'dashboard', title: 'Dashboard',  icon: 'ti-panel', class: '' },
+    { path: 'dashboard', title: 'ICO',  icon: 'ti-dashboard', class: '' },
     
    
     { path: 'my-wallet', title: 'My-Wallet',  icon: 'ti-wallet', class: '' },

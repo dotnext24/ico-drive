@@ -34,9 +34,13 @@
                                             <label>Password</label>
                                             <input class="form-control input-no-border" placeholder="Password" type="password" [(ngModel)]="loginData.password" name="password" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label> <input class="input-no-border" placeholder="Password" type="checkbox" [(ngModel)]="loginData.remberme" name="remberme" > Remember Me</label>
+                                           
+                                        </div>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <button class="btn btn-fill btn-wd" type="submit" [disabled]="!loginForm.form.valid">Sign in</button>
+                                        <button class="btn btn-fill btn-wd" type="submit" [disabled]="!loginForm.form.valid">{{!processing?'Sign in':'Processing...'}}</button>
                                         <div class="forgot">
                                             <a [routerLink]="['/account/reset-password-request/an/token']">Forgot your password?</a>
 
@@ -54,12 +58,10 @@
                 </div>
             </div>
     
-            <footer class="footer footer-transparent">
-                <div class="container">
-                    <div class="copyright">
-                        © 2018, Trunkey ICO
-                    </div>
-                </div>
-            </footer>
-        <div class="full-page-background" style="background-image: url(./assets/img/background/background-2.jpg) "></div></div>
+            
     </div>
+
+
+
+      
+      

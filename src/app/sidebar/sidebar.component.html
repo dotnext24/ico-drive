@@ -4,7 +4,7 @@
     <ul class="nav">
     
         <li *ngFor="let menuItem of menus" routerLinkActive="active" class="{{menuItem.class}}">
-            <a (click)="clickMenu()" [routerLink]="['/'+menuItem.path]">
+            <a (click)="clickMenu('/'+menuItem.path)" [routerLink]="['/'+menuItem.path]">
                 <i class="{{menuItem.icon}}"></i>
                 <p>{{menuItem.title}}</p>
             </a>

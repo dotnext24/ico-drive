@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-book',
@@ -12,16 +13,17 @@ import { of } from 'rxjs/observable/of';
 })
 export class BookComponent implements OnInit {
   books: any;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private storageService:StorageService, private http: HttpClient, private router: Router) { }
   
   logout() {
-    localStorage.removeItem('jwtToken');
+    this.storageService.removeItem('jwtToken');
+    this.storageService.removeItem('username');
     this.router.navigate(['login']);
   }
   ngOnInit() {
-    console.log("localStorage.getItem('jwtToken')",localStorage.getItem('jwtToken'));
+    console.log("storageService.getItem('jwtToken')",this.storageService.getItem('jwtToken'));
     
-    if(!localStorage.getItem('jwtToken'))
+    if(!this.storageService.getItem('jwtToken'))
     {
       this.router.navigate(['login']);
     }
@@ -29,7 +31,7 @@ export class BookComponent implements OnInit {
     let params = new HttpParams().set('isbn','gtr');
 
     let httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') }),
+      headers: new HttpHeaders({ 'Authorization': this.storageService.getItem('jwtToken') }),
       params: {'isbn':'gtr'}
     };
     

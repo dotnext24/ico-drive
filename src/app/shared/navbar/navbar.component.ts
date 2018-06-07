@@ -41,6 +41,12 @@ export class NavbarComponent implements OnInit{
         // }
         return 'ABC Coin';
     }
+
+    newWindow(url)
+    {
+        window.open(url,'_blank')
+    }
+
     sidebarToggle(){
         var toggleButton = this.toggleButton;
         var body = document.getElementsByTagName('body')[0];

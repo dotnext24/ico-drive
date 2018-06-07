@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-newbook',
@@ -15,13 +16,13 @@ export class NewbookComponent implements OnInit {
   bookData = { isbn:'', title:'',author:'',publisher:'' };    
   message = '';
   data: any;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private storageService:StorageService, private http: HttpClient, private router: Router) { }
   
 
 
   createNewBook()
   {
-    if(!localStorage.getItem('jwtToken'))
+    if(!this.storageService.getItem('jwtToken'))
     {
       this.router.navigate(['login']);
     }
@@ -29,7 +30,7 @@ export class NewbookComponent implements OnInit {
     console.log('this.bookData xddsd',this.bookData)
     
     let httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
+      headers: new HttpHeaders({ 'Authorization': this.storageService.getItem('jwtToken') })
     };
 
     this.http.post('/api/book',this.bookData,httpOptions).subscribe(resp => {

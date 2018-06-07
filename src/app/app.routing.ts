@@ -22,6 +22,7 @@ import { SettingComponent } from './setting/setting.component';
 import { WhitePaperComponent } from './white-paper/white-paper.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BookComponent } from './book/book.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -29,7 +30,8 @@ const PUBLIC_ROUTES: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'account/:task/:uname/:token', component: AccountComponent},
-  { path: 'signup', component: SignupComponent }
+  { path: 'signup', component: SignupComponent },
+  { path: 'home', component: HomeComponent }
 ];
 
 const SECURE_ROUTES: Routes = [
@@ -38,7 +40,7 @@ const SECURE_ROUTES: Routes = [
 
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'my-wallet', component: MyWalletComponent, canActivate: [AuthGuard] },
-  { path: 'comming-soon', component: CommingSoonComponent, canActivate: [AuthGuard] },
+  { path: 'coming-soon', component: CommingSoonComponent, canActivate: [AuthGuard] },
   { path: 'affiliate', component: AffiliateComponent, canActivate: [AuthGuard] },
   { path: 'support', component: SupportComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingComponent, canActivate: [AuthGuard] },

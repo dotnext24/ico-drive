@@ -41,6 +41,8 @@ import { WhitePaperComponent } from './white-paper/white-paper.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BookComponent } from './book/book.component';
 import { NewbookComponent } from './newbook/newbook.component';
+import { StorageService } from './storage.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { NewbookComponent } from './newbook/newbook.component';
     SettingComponent,
     WhitePaperComponent,
     LogoutComponent,
-    NewbookComponent
+    NewbookComponent,
+    HomeComponent
   ],
   imports: [  
 
@@ -84,7 +87,7 @@ FormsModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
    
   ],
-  providers: [AuthService, AuthGuard,CountryPickerService],
+  providers: [StorageService, AuthService, AuthGuard,CountryPickerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

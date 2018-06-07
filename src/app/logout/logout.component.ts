@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-logout',
@@ -8,9 +9,9 @@ import { AuthService } from '../auth/auth.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private router: Router,private authService:AuthService) {
-    localStorage.removeItem('jwtToken');
-    localStorage.removeItem('username');
+  constructor(private storageService:StorageService, private router: Router,private authService:AuthService) {
+    this.storageService.removeItem('jwtToken');
+    this.storageService.removeItem('username');
     this.authService.logout();
     this.router.navigate(['login']);
 
