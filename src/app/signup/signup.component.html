@@ -47,9 +47,16 @@
 
                                     <div class="form-group">
                                         <label>Email address</label>
-                                        <input class="form-control input-no-border" placeholder="Enter email" type="email" [(ngModel)]="signupData.username" name="username"
+                                        <input class="form-control input-no-border" placeholder="Enter email" type="email" [(ngModel)]="signupData.email" name="email"
                                             required>
                                     </div>
+
+                                    <div class="form-group">
+                                            <label>Username</label>
+                                            <input class="form-control input-no-border" placeholder="Enter username" type="text" [(ngModel)]="signupData.username" name="username"
+                                                required>
+                                        </div>
+
                                     <div class="form-group">
                                         <label>Password</label>
                                         <input class="form-control input-no-border" placeholder="Password" type="password" [(ngModel)]="signupData.password" name="password"

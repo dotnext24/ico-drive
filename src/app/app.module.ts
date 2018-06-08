@@ -44,6 +44,7 @@ import { NewbookComponent } from './newbook/newbook.component';
 import { StorageService } from './storage.service';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   imports: [  
 
 FormsModule,
+  HttpModule,
   HttpClientModule,
   BrowserModule,
     RouterModule.forRoot(AppRoutes),

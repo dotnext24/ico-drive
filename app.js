@@ -9,9 +9,7 @@ var accountApi = require('./routes/account.route');
 var userApi=require('./routes/user.route');
 var bookApi=require('./routes/book.route');
 var mailApi=require('./routes/mail.route');
-
 var app = express();
-
 
 var morgan = require('morgan');
 var mongoose = require('mongoose');

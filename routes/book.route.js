@@ -37,7 +37,7 @@ router.get('/book/:isbn', passport.authenticate('jwt', { session: false}), funct
   var token =" getToken(req.headers)";
   console.log(token);
   if (token) {
-    res.json('books')
+    res.json(req.params.isbn)
     //var isbn=req.params.isbn;
     // Book.find({isbn:'gtr'},function (err, books) {
     //   if (err) return next(err);

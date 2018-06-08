@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+
 import { Router } from '@angular/router';
 import { StorageService } from '../storage.service';
+import * as _ from 'lodash';
+import { Http,Headers, RequestOptions,Request, RequestMethod } from '@angular/http';
+import { window } from 'rxjs/operators/window';
+import { Observable } from 'rxjs/Observable';
+import { ICountry } from '../common-services/country/country.interface';
+import { CountryPickerService } from './../common-services/country/country-picker.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -10,28 +17,64 @@ import { StorageService } from '../storage.service';
 })
 export class ProfileComponent implements OnInit {
   user:any={};
+  showEditProfile=false;
+  message = '';
+  error='';
+  private dataUrl = 'countries.json';
+  private data: Observable<ICountry[]> = null;
+  public countries: ICountry[];
+  processing: boolean = false;
 
-  constructor(private storageService:StorageService, private http: HttpClient, private router: Router) { }
+  setValue: string = 'cca3';
+  setName: string = 'name.common';
+
+  constructor(private countryPickerService: CountryPickerService, private http:Http, private storageService:StorageService,  private router: Router) { 
+    this.countryPickerService.getCountries().subscribe(countries => {
+      this.countries = countries.sort((a: ICountry, b: ICountry) => {
+        let na = this.getName(a);
+        let nb = this.getName(b);
+        if (na > nb) {
+          return 1;
+        }
+        if (na < nb) {
+          return -1;
+        }
+        return 0;
+      });
+    });
+
+
+  }
+
+  public getValue(obj: ICountry) {
+    return _.get(obj, this.setValue);
+  }
+
+  public getName(obj: ICountry) {
+    return _.get(obj, this.setName);
+  }
 
   ngOnInit() {
 
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': this.storageService.getItem('jwtToken') })
-    };
-    var username=this.storageService.getItem('username');
- 
-    this.http.get('/api/user', httpOptions).subscribe(data => {
-      console.log('data',data as Array<any>);
-      var arr=data as Array<any>;
-     
-      this.user = arr.filter(x=>x.username==username)[0];
-      console.log(this.user);
-    }, err => {
-      console.log('err',err);
-      if(err.status === 401) {
-        this.router.navigate(['login']);
+    
+
+   var headers= new Headers({ 'Authorization': this.storageService.getItem('jwtToken') });
+   var uname=this.storageService.getItem('username');
+
+    this.http.get('/api/user/'+uname,{
+      headers:headers }).subscribe(data=>{
+       
+        this.user=data.json();
       }
-    });
+      );
+
+  }
+
+  editProfile(event)
+  {
+    this.showEditProfile=true;
+    event.stopPropagation();
+
   }
 
 }

@@ -21,7 +21,9 @@ router.post('/signup', function (req, res) {
 
     const uuidv4 = require('uuid/v4');
     const activation_token = uuidv4();
+
     var newUser = new User({
+      email:req.body.email,
       username: req.body.username,
       password: req.body.password,
       firstname: req.body.firstname,
@@ -31,10 +33,11 @@ router.post('/signup', function (req, res) {
       activation_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30))
 
     });
+
     // save the user
     newUser.save(function (err) {
       if (err) {
-        return res.json({ success: false, msg: 'Username already exists.', error: err });
+        return res.json({ success: false, msg: 'Username or email already exists.', error: err });
       }
       res.json({ success: true, msg: 'Successful created new user.' });
     });
@@ -88,8 +91,7 @@ router.post('/reset-password', function (req, res) {
   }, function (err, user) {
     if (err) throw err;
 
-    if (!user) {
-     
+    if (!user) {     
       res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
     } else {
       console.log(user);
@@ -123,9 +125,10 @@ router.post('/reset-password', function (req, res) {
 
 
 router.post('/signin', function (req, res) {
-  User.findOne({
-    username: req.body.username
-  }, function (err, user) {
+  User.findOne({$or: [
+    {email: req.body.username},
+    {username: req.body.username}
+]}, function (err, user) {
     if (err) throw err;
 
     if (!user) {

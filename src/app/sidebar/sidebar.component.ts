@@ -66,7 +66,7 @@ export class SidebarComponent implements OnInit {
 
 
     sidebarToggle() {
-
+        
         var toggleButton = this.toggleButton;
         var body = document.getElementsByTagName('body')[0];
 

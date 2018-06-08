@@ -15,7 +15,7 @@ import { resetFakeAsyncZone } from '@angular/core/testing';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  signupData = { username: '', password: '', country: '', firstname: '', lastname: '' };
+  signupData = {email:'', username: '', password: '', country: '', firstname: '', lastname: '' };
   message = '';
   error='';
   private dataUrl = 'countries.json';
@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
 
   setValue: string = 'cca3';
   setName: string = 'name.common';
+
   constructor(private countryPickerService: CountryPickerService, private http: HttpClient, private router: Router) {
     this.countryPickerService.getCountries().subscribe(countries => {
       this.countries = countries.sort((a: ICountry, b: ICountry) => {
@@ -52,7 +53,7 @@ export class SignupComponent implements OnInit {
         let emailData = {
           name: this.signupData.firstname + ' ' + this.signupData.lastname,
           link: 'activation link',
-          to: this.signupData.username
+          to: this.signupData.email
         }
 
         this.http.post('/api/activation-email', emailData).subscribe(resp => {
