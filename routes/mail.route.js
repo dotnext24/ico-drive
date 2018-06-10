@@ -19,7 +19,10 @@ router.post('/activation-email', function (req, res) {
 
         const uuidv4 = require('uuid/v4');
         const activation_token = uuidv4();
-        User.findOneAndUpdate({ email: req.body.to }, { activation_token: activation_token, activation_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
+        User.findOneAndUpdate({$or: [
+            {email: req.body.to},
+            {username: req.body.to}
+        ]}, { activation_token: activation_token, activation_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
             if (!err) {
                 console.log('user', user);
                 var name=user.firstname+' '+user.lastname;
@@ -54,7 +57,10 @@ router.post('/reset-password-email', function (req, res) {
 
         const uuidv4 = require('uuid/v4');
         const password_reset_token = uuidv4();
-        User.findOneAndUpdate({ username: req.body.to }, { password_reset_token: password_reset_token, password_reset_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
+        User.findOneAndUpdate({$or: [
+            {email: req.body.to},
+            {username: req.body.to}
+        ]}, { password_reset_token: password_reset_token, password_reset_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
             if (!err && user) {
                
                 var name=user.firstname+' '+user.lastname;

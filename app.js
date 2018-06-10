@@ -26,6 +26,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
+
 //app.use('/', express.static(path.join(__dirname, 'dist')));
 app.use('/books', express.static(path.join(__dirname, 'dist')));
 app.use('/api', accountApi);
@@ -53,9 +54,15 @@ app.use(function(err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
   
+    console.log("global error: ",err);
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+   
+    if(err.status==404)
+    res.sendFile('not-found.html', {root : __dirname + '/dist/views'});
+    else   
+    res.sendFile('error.html', {root : __dirname + '/dist/views'});
+  
   });
 
   module.exports = app;

@@ -46,9 +46,10 @@ router.post('/signup', function (req, res) {
 
 
 router.post('/activate-account', function (req, res) {
-  User.findOne({
-    username: req.body.username
-  }, function (err, user) {
+  User.findOne({$or: [
+    {email: req.body.username},
+    {username: req.body.username}
+]}, function (err, user) {
     if (err) throw err;
 
     if (!user) {
@@ -86,9 +87,10 @@ router.post('/activate-account', function (req, res) {
 //reset password
 
 router.post('/reset-password', function (req, res) {
-  User.findOne({
-    username: req.body.username
-  }, function (err, user) {
+  User.findOne({$or: [
+    {email: req.body.username},
+    {username: req.body.username}
+]}, function (err, user) {
     if (err) throw err;
 
     if (!user) {     
@@ -125,7 +127,7 @@ router.post('/reset-password', function (req, res) {
 
 
 router.post('/signin', function (req, res) {
-  User.findOne({$or: [
+   User.findOne({$or: [
     {email: req.body.username},
     {username: req.body.username}
 ]}, function (err, user) {
