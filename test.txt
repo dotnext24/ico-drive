@@ -21,7 +21,7 @@ done The home page was to be an empty HTML page.
 
 Where is the backend management (admin dashboard)
 
-User should be able to edit their profile except Username with confirmation mail.
+done User should be able to edit their profile except Username with confirmation mail.
 
 done Spelling Corrections:
 i. Turnkey ICO not Trunkey ICO

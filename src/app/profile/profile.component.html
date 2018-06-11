@@ -31,7 +31,7 @@
                 </p>
                 <h6>Registered on</h6>
                 <p>
-                    {{user.createdAt || 'loading..' | date: 'dd/MM/yyyy' }}
+                    {{user.createdAt | date: 'dd/MM/yyyy' || 'loading..'  }}
                 </p>
             </div>
 

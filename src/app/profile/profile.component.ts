@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit {
       headers: headers
     }).subscribe(data => {
       this.user = data.json();
+      
     }
     );
   }

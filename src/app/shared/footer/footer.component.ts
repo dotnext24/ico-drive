@@ -12,5 +12,6 @@ import { Component, HostBinding } from '@angular/core';
 })
 
 export class FooterComponent{
-    test : Date = new Date();
+    currentDate:Date=new Date();
+    serverTime : string = this.currentDate.toDateString()+', '+this.currentDate.getHours()+':'+this.currentDate.getMinutes();
 }

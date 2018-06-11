@@ -60,7 +60,7 @@ export class SidebarComponent implements OnInit {
         document.body.className = document.body.className.replace('nav-open', '');
 
         if(url=='/support' || url=='/whitepaper')
-        window.open('some_url','_blank')
+        window.open('https://someurl/','_blank')
     }
 
 
