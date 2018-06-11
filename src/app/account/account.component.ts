@@ -48,6 +48,17 @@ export class AccountComponent implements OnInit {
        console.log('reset-password',this.state);
      }
 
+     //profile update
+     if(task=='confirm-profile-update')
+     {
+      this.http.post('/api/activate-account',{username:uname,token:token}).subscribe(resp => {
+        this.message="Your profile is updated successfully.";
+
+      }, err => {
+        this.message = err.error.msg;
+      });
+     }
+
     });
      
 

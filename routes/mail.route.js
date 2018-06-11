@@ -108,7 +108,7 @@ router.post('/profile-update-confirmation-email', function (req, res) {
                 var name=user.firstname+' '+user.lastname;
 
                 var port='';
-                var link=req.protocol+'://'+req.host+''+port+'/account/confirm-profile-update/'+req.body.to+'/'+activation_token;
+                var link=req.protocol+'://'+req.host+''+port+'/account/confirm-profile-update/'+user.username+'/'+activation_token;
                 var result = mailService.sendAccountUpdateConfirmationEmail(req.body.to,link,name);
                 result.then(response => {
                     console.log('res', response);

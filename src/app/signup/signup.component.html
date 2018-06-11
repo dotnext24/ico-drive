@@ -51,14 +51,17 @@
                                         <input pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' #email="ngModel" class="form-control input-no-border" placeholder="Enter email" type="email" [(ngModel)]="signupData.email" name="email"
                                             required>
                                             <span  *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
-                                                    Name must a valid email address.
+                                                    Must a valid email address.
                                             </span>
                                     </div>
 
                                     <div class="form-group">
                                             <label>Username</label>
-                                            <input class="form-control input-no-border" placeholder="Enter username" type="text" [(ngModel)]="signupData.username" name="username"
+                                            <input #username="ngModel" minlength="4" class="form-control input-no-border" placeholder="Enter username" type="text" [(ngModel)]="signupData.username" name="username"
                                                 required>
+                                                <span  *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger">
+                                                    Username must be at least 4 characters long.
+                                            </span>
                                         </div>
 
                                     <div class="form-group">
@@ -67,7 +70,7 @@
                                             required>
 
                                             <span  *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
-                                                    Password must be at least 2 characters long.
+                                                    Password must be at least 6 characters long.
                                             </span>
                                     </div>
                                 </div>

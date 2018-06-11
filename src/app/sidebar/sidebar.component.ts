@@ -59,8 +59,8 @@ export class SidebarComponent implements OnInit {
         this.toggleButton.classList.remove('toggled');
         document.body.className = document.body.className.replace('nav-open', '');
 
-        if(url=='/coming-soon' || url=='/whitepaper')
-        window.open(url,'_blank')
+        if(url=='/support' || url=='/whitepaper')
+        window.open('some_url','_blank')
     }
 
 

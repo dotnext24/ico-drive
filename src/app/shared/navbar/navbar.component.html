@@ -35,7 +35,7 @@
 
 
                 <li>
-                        <a (click)="newWindow('/coming-soon')" href="/coming-soon" target="_blank" class="dropdown-toggle" data-toggle="dropdown">
+                        <a [routerLink]="['/coming-soon']"  class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="ti-bell"></i>                               
                                 <p>Coming Soon</p>
                           </a>
@@ -44,14 +44,14 @@
                
                 <li>
                        
-                    <a (click)="newWindow('/whitepaper')"  class="dropdown-toggle" data-toggle="dropdown">
+                    <a (click)="newWindow('some_url')"  class="dropdown-toggle" data-toggle="dropdown">
                         <i class="ti-download"></i>
                         <p>Whitepaper</p>
                     </a>
                 </li>
                 
                 <li>
-                    <a [routerLink]="['/support']" class="dropdown-toggle" data-toggle="dropdown">
+                    <a  (click)="newWindow('some_url')"  class="dropdown-toggle" data-toggle="dropdown">
                         <i class="ti-help"></i>
                         <p>Support</p>
                     </a>
