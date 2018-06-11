@@ -93,5 +93,42 @@ router.post('/reset-password-email', function (req, res) {
 });
 
 
+router.post('/profile-update-confirmation-email', function (req, res) {
+
+    if (req.body.to && req.body.link && req.body.name) {
+
+        const uuidv4 = require('uuid/v4');
+        const activation_token = uuidv4();
+        User.findOneAndUpdate({$or: [
+            {email: req.body.to},
+            {username: req.body.to}
+        ]}, { active:false, activation_token: activation_token, activation_token_expiry: new Date(new Date().setMinutes(new Date().getMinutes() + 30)) }, null, function (err, user) {
+            if (!err) {
+                console.log('user', user);
+                var name=user.firstname+' '+user.lastname;
+
+                var port='';
+                var link=req.protocol+'://'+req.host+''+port+'/account/confirm-profile-update/'+req.body.to+'/'+activation_token;
+                var result = mailService.sendAccountUpdateConfirmationEmail(req.body.to,link,name);
+                result.then(response => {
+                    console.log('res', response);
+                    return res.json({ success: true, msg: 'Successful sent profile update confirmation email' });
+                }).catch(err => {
+                    console.log("error router.post('/activation-email'",err);
+                    return res.json({ success: false, msg: 'Email failed.', err: error });
+                })
+            }
+
+
+        });
+
+
+
+    } else {
+        return res.status(400).send({ success: false, msg: 'Bad request.' });
+    }
+});
+
+
 module.exports = router;
 

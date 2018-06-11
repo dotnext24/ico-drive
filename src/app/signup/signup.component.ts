@@ -49,14 +49,14 @@ export class SignupComponent implements OnInit {
     this.http.post('/api/signup', this.signupData).subscribe(resp => {
       console.log(resp['msg']);
       if (resp['success']) {
-
+        
         let emailData = {
           name: this.signupData.firstname + ' ' + this.signupData.lastname,
           link: 'activation link',
           to: this.signupData.email
         }
 
-        this.http.post('/api/activation-email', emailData).subscribe(resp => {
+         this.http.post('/api/activation-email', emailData).subscribe(resp => {
 
           console.log('/api/activation-email', resp);
           this.processing = false; 
@@ -64,8 +64,7 @@ export class SignupComponent implements OnInit {
           //this.router.navigate(['login']);
         }, err => {
           this.processing = false;
-        })
-       
+        })      
 
       }
       else {

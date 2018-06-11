@@ -13,10 +13,11 @@
         <div *ngIf="isNotMobileMenu()" class="sidebar" data-background-color="white" data-active-color="danger">
             <sidebar-cmp></sidebar-cmp>           
         </div>
-        <div class="main-panel-dashboard">
+        <div style="min-height: 100%" class="main-panel-dashboard">
             <navbar-cmp></navbar-cmp>
             <router-outlet></router-outlet>
-            <footer-cmp></footer-cmp>
+          
         </div>
+        <footer-cmp></footer-cmp>
     </div>
   

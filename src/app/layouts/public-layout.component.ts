@@ -7,15 +7,16 @@ declare var $:any;
   <div *ngIf="isNotMobileMenu()" class="sidebar" data-background-color="white" data-active-color="danger">
       <sidebar-cmp></sidebar-cmp>
   </div>
-  <div class="main-panel-dashboard">
+  <div style="min-height: 100%" class="main-panel-dashboard">
   <navbar-public-cmp>
   <div class="loader-container">
       <div class="loader"></div>
   </div>
 </navbar-public-cmp>
       <router-outlet></router-outlet>
-      <footer-cmp></footer-cmp>
+     
   </div>
+  <footer-cmp></footer-cmp>
 </div>
   `,
   styles: []

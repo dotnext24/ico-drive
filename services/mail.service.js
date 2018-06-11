@@ -48,19 +48,26 @@ function sendAccountActivationEmail(to, link, name) {
 
 
 
+
+
 function sendResetPasswordEmail(to, link, name) {
-
-    //     var htmlstream = fs.createReadStream('email-templates/account-activation.html');
-
-    //    var content=fs.readFileSync('email-templates/account-activation.html',{encoding: 'utf-8'});
-    //    htmlstream=content.replace('<%= token %>','google.com');
-
+   
     var content = '<h2>Hello, ' + name + '</h2><br /> <h3>Welcome to ' + siteConfig.name + '</h3> <br/> Please click on below link to reset your account password. <br /> <a href="' + link + '">Password reset link.</a>'
 
     var mailOptions = {
         to: to,
         subject: siteConfig.name + '- Reset Password',
 
+        html: content
+    };
+    return sendEmail(mailOptions);
+}
+
+function sendAccountUpdateConfirmationEmail(to, link, name) {
+    var content = '<h2>Hello, ' + name + '</h2><br /> <h3>Welcome to ' + siteConfig.name + '</h3> <br/> Please click on below link to confirm your account update request. <br /> <a href="' + link + '">Password reset link.</a>'
+    var mailOptions = {
+        to: to,
+        subject: siteConfig.name + '- Account update confirmation',
         html: content
     };
 
@@ -74,3 +81,4 @@ exports.foo = foo;
 exports.sendEmail = sendEmail;
 exports.sendAccountActivationEmail = sendAccountActivationEmail;
 exports.sendResetPasswordEmail = sendResetPasswordEmail;
+exports.sendAccountUpdateConfirmationEmail=sendAccountUpdateConfirmationEmail;

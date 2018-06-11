@@ -1,45 +1,66 @@
 <div class="container">
     <div *ngIf="!showEditProfile">
-    <h4 class="m-y-2">User Profile <a (click)="editProfile($event)" style="font-size:80%;cursor:pointer" ><i class="ti-pencil"></i></a></h4>
-    <div class="row">
-        <div class="col-md-6">
-            <h6>First Name</h6>
-            <p>
-                {{user.firstname || 'loading..'}}
-            </p>
-            <h6>Last Name</h6>
-            <p>
-                {{user.lastname || 'loading..'}}
-            </p>
-            <h6>Country</h6>
-            <p>
-                {{user.country || 'loading..'}}
-            </p>
-        </div>
-        <div class="col-md-6">
-            <h6>Email</h6>
-            <p>
-                {{user.username || 'loading..'}}
-            </p>
-            <h6>Registered on</h6>
-            <p>
-                {{user.createdAt || 'loading..' | date: 'dd/MM/yyyy' }}
-            </p>
-        </div>
+        <h4 class="m-y-2">User Profile
+            <a (click)="editProfile($event)" style="font-size:80%;cursor:pointer">
+                <i class="ti-pencil"></i>
+            </a>
+        </h4>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>First Name</h6>
+                <p>
+                    {{user.firstname || 'loading..'}}
+                </p>
+                <h6>Last Name</h6>
+                <p>
+                    {{user.lastname || 'loading..'}}
+                </p>
+                <h6>Country</h6>
+                <p>
+                    {{user.country || 'loading..'}}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h6>Username</h6>
+                <p>
+                    {{user.username || 'loading..'}}
+                </p>
+                <h6>Email</h6>
+                <p>
+                    {{user.email || 'loading..'}}
+                </p>
+                <h6>Registered on</h6>
+                <p>
+                    {{user.createdAt || 'loading..' | date: 'dd/MM/yyyy' }}
+                </p>
+            </div>
 
+        </div>
     </div>
-   </div>
 
     <div *ngIf="showEditProfile" class="row">
 
         <div class="col-md-8 col-sm-12">
 
+
+
             <div class="card">
                 <div class="header">
+
+                    <div class="alert {{error==''?'alert-success':'alert-warning'}}  alert-dismissible" role="alert" *ngIf="message !== ''">
+ 
+                        <button style="right: 3px;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        {{message}}
+
+                    </div>
+
                     <h4 class="title">Edit Profile</h4>
                 </div>
                 <div class="content">
-                    <form>
+                    <form novalidate="" class="ng-untouched ng-pristine ng-valid" (ngSubmit)="update()" #profileForm="ngForm">
                         <div class="row">
 
                             <div class="col-md-6">
@@ -51,7 +72,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email address</label>
-                                    <input name="email"  type="email" class="form-control border-input" placeholder="Email" required>
+                                    <input name="email" [(ngModel)]="user.email" type="email" class="form-control border-input" placeholder="Email" required>
                                 </div>
                             </div>
                         </div>
@@ -60,13 +81,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input name="firstname" [(ngModel)]="user.firstname" type="text" class="form-control border-input" placeholder="Company" required>
+                                    <input name="firstname" [(ngModel)]="user.firstname" type="text" class="form-control border-input" placeholder="Company"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input name="lastname" [(ngModel)]="user.lastname" type="text" class="form-control border-input" placeholder="Last Name"  required>
+                                    <input name="lastname" [(ngModel)]="user.lastname" type="text" class="form-control border-input" placeholder="Last Name"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -75,18 +98,16 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Country</label>
-                                    <select class="form-control form-control-sm" [(ngModel)]="user.country" name="country" required>   
-                                            <option *ngFor="let c of countries; let i = index;" [value]="getValue(c)"> {{getName(c)}} </option>
-                                        </select>
+                                    <select class="form-control form-control-sm" [(ngModel)]="user.country" name="country" required>
+                                        <option *ngFor="let c of countries; let i = index;" [value]="getValue(c)"> {{getName(c)}} </option>
+                                    </select>
                                 </div>
                             </div>
 
                         </div>
 
-
-
                         <div class="text-center">
-                            <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                            <button type="submit" [disabled]="!profileForm.form.valid" disabled="profileForm" class="btn btn-fill btn-wd">{{!processing?'Update Profile':'Processing...'}}</button>
                         </div>
                         <div class="clearfix"></div>
                     </form>
